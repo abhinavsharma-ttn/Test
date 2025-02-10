@@ -4,8 +4,8 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'Hello, World!'
-                sh 'chmod +x /var/lib/jenkins/workspace/task2/abc.sh'
-                sh '/var/lib/jenkins/workspace/task2/abc.sh'
+                sh 'chmod +x /var/lib/jenkins/workspace/task2/abhi.sh'
+                sh '/var/lib/jenkins/workspace/task2/abhi.sh'
             }
         }
     }
