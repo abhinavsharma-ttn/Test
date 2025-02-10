@@ -1,18 +1,25 @@
 pipeline {
     agent any
     stages {
-        stage('Hello') {
+        stage('Clone Repository') {
             steps {
-                echo 'Hello, World!'
-                
-                // Clone the repository inside the workspace
-                sh 'git clone git@github.com:abhinavsharma-ttn/Assingment.git ${WORKSPACE}/Assingment'
-                
-                // Ensure the script has execute permissions
-                sh 'chmod +x ${WORKSPACE}/Assingment/abhi.sh'
-                
-                // Run the script
-                sh '${WORKSPACE}/Assingment/abhi.sh'
+                script {
+                    withCredentials([sshUserPrivateKey(credentialsId: 'ba7eef67-9ac8-40eb-80fa-5d30fb3ee315', keyFileVariable: 'SSH_KEY')]) {
+                        sh '''
+                            eval `ssh-agent -s`
+                            ssh-add $SSH_KEY
+                            git clone git@github.com:abhinavsharma-ttn/Assingment.git
+                        '''
+                    }
+                }
+            }
+        }
+        stage('Run Script') {
+            steps {
+                sh '''
+                    chmod +x ${WORKSPACE}/Assingment/abhi.sh
+                    ${WORKSPACE}/Assingment/abhi.sh
+                '''
             }
         }
     }
