@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo 'Hello, World!'
                 sh 'chmod +x abc.sh'
-                sh 'abc.sh'
+                sh '/var/lib/jenkins/workspace/task2/abc.sh'
             }
         }
     }
