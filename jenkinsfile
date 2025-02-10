@@ -4,13 +4,15 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'Hello, World!'
-                sh 'git clone git@github.com:abhinavsharma-ttn/Assingment ${WORKSPACE}/Assingment'
                 
-                // Ensure script has execute permissions
-                sh 'chmod +x ${WORKSPACE}/Test/abhi.sh'
+                // Clone the repository inside the workspace
+                sh 'git clone git@github.com:abhinavsharma-ttn/Assingment.git ${WORKSPACE}/Assingment'
+                
+                // Ensure the script has execute permissions
+                sh 'chmod +x ${WORKSPACE}/Assingment/abhi.sh'
                 
                 // Run the script
-                sh '${WORKSPACE}/Test/abhi.sh'
+                sh '${WORKSPACE}/Assingment/abhi.sh'
             }
         }
     }
