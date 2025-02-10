@@ -4,9 +4,13 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'Hello, World!'
-                sh 'git clone git@github.com:abhinavsharma-ttn/Test.git'
-                sh 'chmod +x /var/lib/jenkins/workspace/task2/abhi.sh'
-                sh '/var/lib/jenkins/workspace/task2/abhi.sh'
+                sh 'git clone git@github.com:abhinavsharma-ttn/Assingment ${WORKSPACE}/Assingment'
+                
+                // Ensure script has execute permissions
+                sh 'chmod +x ${WORKSPACE}/Test/abhi.sh'
+                
+                // Run the script
+                sh '${WORKSPACE}/Test/abhi.sh'
             }
         }
     }
